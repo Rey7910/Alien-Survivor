@@ -5,7 +5,7 @@ Este juego es una combinación entre los clásicos Tetris y Galaga desarrollado 
 IDE de Proccesing.
 Java 7 o una versión superior.
 
-# Ejecución:
+## Ejecución:
 Para poder ejecutar el código e interactuar con el programa es necesario copiar el código del juego y llevarlo directamente a Processing en el modo de integración en Java. Además, dentro de la carpeta del proyecto debe ir una carpeta que contenga los archivos de imagenes de formatos PNG Y JPG necesarios para el funcionamiento del juego.
 
 ## Instrucciones:
