@@ -11,7 +11,6 @@ ovni r,t,y;
 fuego f1,f2;
 Background bg;
 void setup(){
-  println(tempo);
   size(1200,600); 
   shape = new Shape();
   shape.on = true;
@@ -64,9 +63,23 @@ void setup(){
   bg = new Background();
 }
 
-void draw(){  
-  println("puntaje: "+puntaje);
+void draw(){ 
   tempo = second(); // TEMPORIZADOR
+  if(n1==10){
+       r.muerte=false;
+       r.vida=8;
+       n1=0;
+     }
+     if(n2==10){
+       t.muerte=false;
+       t.vida=8;
+       n2=0;
+     }
+     if(n3==10){
+       y.muerte=false;
+       y.vida=20;
+       n3=0;
+     }
   if(!n.campo){
     resist=20;
   }
@@ -86,18 +99,7 @@ void draw(){
      if(y.muerte){
         n3++;
      }
-     if(n1==10){
-       r.muerte=false;
-       r.vida=8;
-     }
-     if(n2==10){
-       t.muerte=false;
-       t.vida=8;
-     }
-     if(n3==10){
-       y.muerte=false;
-       y.vida=20;
-     }
+     
      if(s%5==0){
          puntaje+=3;
      }
@@ -106,18 +108,6 @@ void draw(){
      par=true;
      impar=false;
      s++;
-     if(n1==10){
-       r.muerte=false;
-       r.vida=8;
-     }
-     if(n2==10){
-       t.muerte=false;
-       r.vida=8;
-     }
-     if(n3==10){
-       y.muerte=false;
-       y.vida=20;
-     }
      if(r.muerte){
         n1++;
      }
@@ -470,4 +460,4 @@ void dfigura(){ // TETRIS
     onDeck = new Shape(); 
  }
  
-}  
+} 
