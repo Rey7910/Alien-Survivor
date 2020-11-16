@@ -1,7 +1,8 @@
 PImage nave,espacio,misil,ovni,meteorito,explosion,implosion,fuego,z,panel,x,puzzle,escudo,marco,salud,campo,T1,T2,click,q,cuadrado,tetromino,L,S,linea,T3,T4,T5,ovni2,danger; // IMAGENES
-int cont=0,puntaje=0,duracion=0,tn=(int)random(7),tempo,s=0,n1=0,n2=0,n3=0,resist=20;
-boolean armas=true,tetris=false,orden= false,par=true, impar=false,game=false;
-float w=600/47;
+int cont=0,puntaje=0,duracion=0,tn=(int)random(7),tempo,s=0,n1=0,n2=0,n3=0,resist=20; // Variables enteras globales
+boolean armas=true,tetris=false,orden= false,par=true, impar=false,game=false; // Booleanos globales
+float w=600/47; //Dimension celda tetris
+// OBJETOS
 Shape shape,onDeck;
 nave n;
 misil m1;
@@ -65,6 +66,7 @@ void setup(){
 
 void draw(){ 
   tempo = second(); // TEMPORIZADOR
+ // -----DELAY DE REAPARICION DE OVNIS------------//
   if(n1==10){
        r.muerte=false;
        r.vida=8;
@@ -80,18 +82,21 @@ void draw(){
        y.vida=20;
        n3=0;
      }
+   ///-------ESCUDO DEL CAMPO DE FUERZA 
   if(!n.campo){
     resist=20;
   }
   if(resist<=0){
     n.campo=false;
   }
+  //----CONTADOR DE SEGUNOD DESDE CERO
   if(tempo%2==0 && par && !impar && !n.muerte){
      par=false;
      impar=true;
      s++;
+     // CONTADOR DE REAPARICION DE OVNIS //
      if(r.muerte){
-        n1++;
+        n1++; 
      }
      if(t.muerte){
         n2++;
@@ -101,7 +106,7 @@ void draw(){
      }
      
      if(s%5==0){
-         puntaje+=3;
+         puntaje+=3; // SUMA DE PUNTAJE POR TIEMPO
      }
      
   }else if(tempo%2==1 && impar && !par && !n.muerte){
@@ -118,10 +123,11 @@ void draw(){
         n3++;
      }
      if(s%5==0){
-          puntaje+=3;
+          puntaje+=3; // SUMA DE PUNTAJE POR TIEMPO
      }
   }
-  if(n.vida>0){
+  // JUEGO EN EJECUCION MIENTRAS LA NAVE ESTE VIVA
+  if(n.vida>0){   
   stroke(0);
   comandos();
   controlador();
@@ -129,7 +135,7 @@ void draw(){
   ovnis();
   nave();
  
-   if(cont!=0 && bg.y==0 || bg.y==1){
+   if(cont!=0 && bg.y==0 || bg.y==1){  // DERROTA EN EL TETRIS Y PERDIDA DE RECUPERACION DE VIDA
       fill(0);
       image(danger,800,600,120,90);
       fill(243,159,24);
@@ -138,26 +144,27 @@ void draw(){
       text("NO OPTION",1035,220);
       text("TO RECOVER",1035,260);
       text("HEALTH",1035,300);
-   }else{
-      bg.display();
+   }else{ // TETRIS
+      bg.display(); 
       cuadricula();
       dfigura();
    }
   
   
   }else{
+    //-------GAME OVER-----------------
      background(0);
       textSize(100);
       fill(255,193,34);
       text("GAME OVER",330,230);
       textSize(50);
       fill(255,255,255);
-      text("Tu Puntaje es: "+puntaje,300,350);
-      text("Sigue así :D",300,440);
+      text("Your Score is: "+puntaje,300,350);
+      text("Great Job :D",300,440);
      
   } 
 }
-void controlador(){
+void controlador(){ //---PANEL DE OPCION DE INVENTARIO
   image(panel,1025,320,175,250);
   if(armas && !tetris){
     image(marco,1088,450,100,70);
@@ -170,7 +177,8 @@ void controlador(){
   image(puzzle,1092,391,90,60);
   image(escudo,1115,465,50,50);
 }
-void nave(){
+
+void nave(){ // COMPORTAMOENTO DE LA NAVE
  
   if(!n.muerte){
     if(!armas){
@@ -199,7 +207,7 @@ void nave(){
   }
  }
 }
-void meteoritos(){
+void meteoritos(){ // COMPORTAMIENTO DE ASTEROIDES
   if(!a1.muerte){
     a1.caer();
   }else{
@@ -256,7 +264,7 @@ void ovnis(){ // COMPORTAMIENTO DE OVNIS SEGUN SU ATRIBUTO DE VIDA
     f2.y=t.y;
   }
 }
-void espacio(){
+void espacio(){ // FONDO DE JUEGO
  image(espacio,172,30,857,510);
 }
 void keyPressed(){ // CONTROLES
@@ -460,4 +468,4 @@ void dfigura(){ // TETRIS
     onDeck = new Shape(); 
  }
  
-} 
+}  
