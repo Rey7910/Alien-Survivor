@@ -32,7 +32,7 @@ public class misil extends cosmo{
         }
         image(explosion,x-50,y,100,96);
        if(!n.campo){
-        n.vida-=1; // DAÑO MISIL
+        n.vida+=1; // DAÑO MISIL
        }
      }
   }
