@@ -14,10 +14,11 @@ public class ovni extends cosmo{
   }
   public void display(){
     if(!t){
-      image(ovni,x,y,60,60);
+      image(ovni,x,y,60,60); // OVNI GRANDE
     }else{
-      image(ovni2,x,y,80,50);
+      image(ovni2,x,y,80,50); // OVNI PEQUEÑO
     }
+    //-----BARRA DE VIDA-------//
     if(vida<8 && !t){
     fill(41,49,51);
     rect(x,y-13,60,13);
@@ -117,11 +118,11 @@ public class ovni extends cosmo{
              if(m1.x==i && m1.y==j){
                m1.contacto=true;
                vida--;
-               puntaje+=3;
+               puntaje+=3; //   BONIFICACION POR IMPACTO
              }else if(m2.x==i && m2.y==j){
                m2.contacto=true;
                vida--;
-               puntaje+=3;
+               puntaje+=3; // BONIFICACION POR IMPACTO
              }
        }
      }
